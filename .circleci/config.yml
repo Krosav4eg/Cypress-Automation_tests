@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: Mocha report generation
-          command: cy:generate:mocha:report
+          command: npm run cy:generate:mocha:report
 
       - send-notification-to-slack-channel
 
