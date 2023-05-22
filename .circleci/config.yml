@@ -38,8 +38,8 @@ commands:
           path: reporter-output
 
 jobs:
-  test:
-    working_directory: ~/app
+  automation-tests-running-configuration:
+    working_directory: ~/Cypress-Automation_tests
     executor: docker-cypress
     parallelism: 1
     steps:
@@ -76,12 +76,26 @@ workflows:
       and:
         - equal: [ false, << pipeline.parameters.ApiTrigger >>]
     jobs:
-      - test:
+      - automation-tests-running-configuration:
           filters:
             branches:
               only:
                 - master
+
+  schedule-workflow:
+    triggers:
+      - schedule:
+          cron: "0 5 * * 2,4"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - automation-tests-running-configuration:
+          NightlyRunNotify: true
+
+
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
-      - test
+      - automation-tests-running-configuration
