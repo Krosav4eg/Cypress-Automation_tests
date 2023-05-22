@@ -48,14 +48,14 @@ commands:
                 webhook: $SLACK_WEBHOOK
 
   run-automation-tests-with-mocha-report:
-    description: "run-automation-tests-with-mocha-report"
+    description: "Run automation tests with mocha report"
     steps:
       - run:
-          name: Mocha report generation
+          name: Run automation tests with mocha report
           command: npm run cy:generate:mocha:report
 
   upload-generated-mocha-report:
-    description: "generating-mocha-report"
+    description: "generating mocha report"
     steps:
       - store_artifacts:
           name: Upload Mocha report
