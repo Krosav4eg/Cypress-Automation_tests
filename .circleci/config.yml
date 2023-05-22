@@ -55,7 +55,7 @@ jobs:
         name: Mocha report generation
         command: cy:generate:mocha:report
 
-      - send-notification-to-slack-channel:
+      - send-notification-to-slack-channel
 
 
 workflows:
