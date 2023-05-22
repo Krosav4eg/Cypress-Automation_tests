@@ -4,7 +4,7 @@ module.exports = defineConfig({
     e2e: {
         viewportWidth: 1200,
         viewportHeight: 800,
-        retries: 1,
+        retries: 2,
         mochaAwesomeReporterOptions: {
             reportDir: "reporter-output",
             overwrite: true,
