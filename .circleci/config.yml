@@ -45,8 +45,8 @@ commands:
     description: "Mocha report running"
     steps:
       - run:
-        name: Mocha report generation
-        command: npm run cy:generate:mocha:report
+          name: Mocha report generation
+          command: npm run cy:generate:mocha:report
 
 
   send-notification-to-slack-channel:
