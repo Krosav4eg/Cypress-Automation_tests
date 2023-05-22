@@ -86,17 +86,6 @@ workflows:
               only:
                 - master
 
-  schedule-workflow:
-    triggers:
-      - schedule:
-          cron: "0 5 * * 2,4"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - automation-tests-running-configuration:
-
 
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
