@@ -9,6 +9,10 @@ parameters:
   notifyToSlack:
     type: boolean
     default: true
+  NightlyRunNotify:
+    type: boolean
+    default: true
+
 
 executors:
   docker-cypress:
