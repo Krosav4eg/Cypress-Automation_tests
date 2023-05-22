@@ -15,6 +15,40 @@ executors:
       - image: cypress/base:14
 
 commands:
+  checkout-and-restore-cache:
+    description: "Checkout And Restore Cache"
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v2-deps-{{ .Branch }}-
+            - v2-deps-
+            - run: npm ci
+            - save_cache:
+                key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+                paths:
+                  - ~/.npm
+                  - ~/.cache
+
+  run-automation-tests:
+    description: "Run Automation Tests"
+    steps:
+      - run:
+          name: Running tests
+          command: npm run cypress:run
+
+      - store_test_results:
+          path: test-results
+
+  mocha-report-running:
+    description: "Mocha report running"
+    steps:
+      - run:
+        name: Mocha report generation
+        command: npm run cy:generate:mocha:report
+
+
   send-notification-to-slack-channel:
     description: "Send notification to Slack channel"
     steps:
@@ -35,42 +69,22 @@ commands:
           path: reporter-output
 
 jobs:
-  test:
+  automation-test:
     working_directory: ~/app
     executor: docker-cypress
     parallelism: 1
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - v2-deps-{{ .Branch }}-
-            - v2-deps-
-      - run: npm ci
-      - save_cache:
-          key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
-      - run:
-          name: Running tests
-          command: npm run cypress:run
-
-      - store_test_results:
-          path: test-results
-
-      - run:
-          name: Mocha report generation
-          command: npm run cy:generate:mocha:report
-
-      - generating-mocha-report
+      - checkout-and-restore-cache
+      - run-automation-tests
+      - mocha-report-running
+      - mocha-report-generation
       - send-notification-to-slack-channel
 
 
 workflows:
   testing:
     jobs:
-      - test:
+      - automation-test:
           filters:
             branches:
               only:
