@@ -3,6 +3,9 @@ orbs:
   slack: circleci/slack@3.4.2
 
 parameters:
+  ApiTrigger:
+    type: boolean
+    default: false
   notifyToSlack:
     type: boolean
     default: true
@@ -68,10 +71,17 @@ jobs:
 
 
 workflows:
-  testing:
+  commit-workflow:
+    when:
+      and:
+        - equal: [ false, << pipeline.parameters.ApiTrigger >>]
     jobs:
       - test:
           filters:
             branches:
               only:
                 - master
+  on-demand:
+    when: << pipeline.parameters.ApiTrigger >>
+    jobs:
+      - test
