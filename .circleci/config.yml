@@ -32,7 +32,8 @@ commands:
     steps:
       - store_artifacts:
           name: Upload Mocha report
-          path: reporter-config.json/mochawesome.html
+          path: reporter-config.json
+
 
 
 jobs:
