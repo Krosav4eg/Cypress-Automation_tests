@@ -87,6 +87,7 @@ workflows:
                 - master
 
   schedule-workflow:
+    when: << pipeline.parameters.NightlyRunNotify >>
     triggers:
       - schedule:
           cron: "0 5 * * 2,4"
@@ -96,7 +97,6 @@ workflows:
                 - master
     jobs:
       - automation-tests-running-configuration:
-          NightlyRunNotify: true
 
 
   on-demand:
