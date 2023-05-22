@@ -9,9 +9,6 @@ parameters:
   notifyToSlack:
     type: boolean
     default: true
-  NightlyRunNotify:
-    type: boolean
-    default: true
 
 
 executors:
@@ -109,8 +106,8 @@ workflows:
               only:
                 - master
     jobs:
-      - automation-tests-running-configuration:
-          NightlyRunNotify: true
+      - automation-tests-running-configuration
+
 
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
