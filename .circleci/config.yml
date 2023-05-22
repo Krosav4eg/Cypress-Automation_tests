@@ -52,8 +52,8 @@ jobs:
           path: test-results
 
       - run:
-        name: Mocha report generation
-        command: cy:generate:mocha:report
+          name: Mocha report generation
+          command: cy:generate:mocha:report
 
       - send-notification-to-slack-channel
 
