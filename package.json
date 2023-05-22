@@ -23,7 +23,8 @@
   },
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=reporter-config.json,overwrite=false,html=true,json=true "
   },
   "author": "Sergey Potapov",
   "license": "ISC"
