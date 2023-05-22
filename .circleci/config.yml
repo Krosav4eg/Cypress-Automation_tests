@@ -37,8 +37,6 @@ commands:
       - run:
           name: Running tests
           command: npm run cypress:run
-      - store_test_results:
-          path: test-results
 
   mocha-report-running:
     description: "Mocha report running"
