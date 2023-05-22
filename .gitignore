@@ -5,3 +5,7 @@ node_modules
 *.log
 *.mp4
 *.iml
+*.html
+*.css
+*.woff
+*.woff2
