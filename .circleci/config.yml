@@ -35,17 +35,6 @@ commands:
             - ~/.npm
             - ~/.cache
 
-  run-automation-tests:
-    description: "Run automation tests"
-    steps:
-      - run:
-          name: Running tests
-          command: npm run cypress:run
-
-      - store_test_results:
-          path: test-results
-
-
   send-notification-to-slack-channel:
     description: "Send notification to Slack channel"
     steps:
@@ -58,8 +47,8 @@ commands:
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
 
-  run-mocha-report:
-    description: "run-mocha-report"
+  run-automation-tests-with-mocha-report:
+    description: "run-automation-tests-with-mocha-report"
     steps:
       - run:
           name: Mocha report generation
@@ -79,8 +68,7 @@ jobs:
     parallelism: 1
     steps:
       - restore-and-save-cache
-      - run-automation-tests
-      - run-mocha-report
+      - run-automation-tests-with-mocha-report
       - upload-generated-mocha-report
       - send-notification-to-slack-channel
 
