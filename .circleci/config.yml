@@ -14,7 +14,7 @@ executors:
 commands:
 
   checkout-and-restore-cache:
-    description: Checkout And Restore Cache
+    description: "Checkout And Restore Cache"
     steps:
       - checkout
       - restore_cache:
@@ -31,7 +31,7 @@ commands:
 
 
   run-automation-tests:
-    description: Run Automation Tests
+    description: "Run Automation Tests"
     steps:
       - run:
           name: Running tests
@@ -39,21 +39,21 @@ commands:
 
 
   mocha-report-running:
-    description: Mocha report running
+    description: "Mocha report running"
     steps:
       - run:
           name: Mocha report generation
           command: 'npm run cy:generate:mocha:report'
 
   generating-mocha-report:
-    description: generating-mocha-report
+    description: "generating-mocha-report"
     steps:
       - store_artifacts:
           name: Upload Mocha report
           path: reporter-output
 
   send-notification-to-slack-channel:
-    description: Send notification to Slack channel
+    description: "Send notification to Slack channel"
     steps:
       - when:
           condition: << pipeline.parameters.notifyToSlack >>
@@ -63,7 +63,6 @@ commands:
                 fail_only: false
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
-
 
 
 jobs:
@@ -77,6 +76,8 @@ jobs:
       - mocha-report-running
       - generating-mocha-report
       - send-notification-to-slack-channel
+
+
 workflows:
   testing:
     jobs:
