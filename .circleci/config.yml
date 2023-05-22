@@ -1,53 +1,22 @@
----
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
+
 parameters:
   notifyToSlack:
     type: boolean
     default: true
+
 executors:
   docker-cypress:
     environment:
       TERM: xterm
     docker:
       - image: cypress/base:14
+
 commands:
-  checkout-and-restore-cache:
-    description: Checkout And Restore Cache
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - v2-deps-{{ .Branch }}-
-            - v2-deps-
-            - run: npm ci
-            - save_cache:
-                key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-                paths:
-                  - ~/.npm
-                  - ~/.cache
-  run-automation-tests:
-    description: Run Automation Tests
-    steps:
-      - run:
-          name: Running tests
-          command: npm run cypress:run
-  mocha-report-running:
-    description: Mocha report running
-    steps:
-      - run:
-          name: Mocha report generation
-          command: npm run cy:generate:mocha:report
-  generating-mocha-report:
-    description: generating-mocha-report
-    steps:
-      - store_artifacts:
-          name: Upload Mocha report
-          path: reporter-output
   send-notification-to-slack-channel:
-    description: Send notification to Slack channel
+    description: "Send notification to Slack channel"
     steps:
       - when:
           condition: << pipeline.parameters.notifyToSlack >>
@@ -57,21 +26,51 @@ commands:
                 fail_only: false
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
+
+  generating-mocha-report:
+    description: "generating-mocha-report"
+    steps:
+      - store_artifacts:
+          name: Upload Mocha report
+          path: reporter-output
+
 jobs:
-  automation-test:
+  test:
     working_directory: ~/app
     executor: docker-cypress
     parallelism: 1
     steps:
-      - checkout-and-restore-cache
-      - run-automation-tests
-      - mocha-report-running
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v2-deps-{{ .Branch }}-
+            - v2-deps-
+      - run: npm ci
+      - save_cache:
+          key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run:
+          name: Running tests
+          command: npm run cypress:run
+
+      - store_test_results:
+          path: test-results
+
+      - run:
+          name: Mocha report generation
+          command: npm run cy:generate:mocha:report
+
       - generating-mocha-report
       - send-notification-to-slack-channel
+
+
 workflows:
   testing:
     jobs:
-      - automation-test:
+      - test:
           filters:
             branches:
               only:
