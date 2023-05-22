@@ -37,7 +37,6 @@ commands:
       - run:
           name: Running tests
           command: npm run cypress:run
-
       - store_test_results:
           path: test-results
 
@@ -79,7 +78,6 @@ jobs:
       - mocha-report-running
       - generating-mocha-report
       - send-notification-to-slack-channel
-
 
 workflows:
   testing:
