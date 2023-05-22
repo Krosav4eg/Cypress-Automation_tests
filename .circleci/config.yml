@@ -77,7 +77,7 @@ jobs:
       - checkout-and-restore-cache
       - run-automation-tests
       - mocha-report-running
-      - mocha-report-generation
+      - generating-mocha-report
       - send-notification-to-slack-channel
 
 
