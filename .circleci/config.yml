@@ -62,7 +62,7 @@ commands:
           path: reporter-output
 
 jobs:
-  automation-tests-running-configuration:
+  automation-tests-run:
     working_directory: ~/Cypress-Automation_tests
     executor: docker-cypress
     parallelism: 1
@@ -79,7 +79,7 @@ workflows:
       and:
         - equal: [ false, << pipeline.parameters.ApiTrigger >>]
     jobs:
-      - automation-tests-running-configuration:
+      - automation-tests-run:
           filters:
             branches:
                only:
@@ -94,10 +94,10 @@ workflows:
               only:
                 - master
     jobs:
-      - automation-tests-running-configuration
+      - automation-tests-run
 
 
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
-      - automation-tests-running-configuration
+      - automation-tests-run
