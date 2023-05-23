@@ -88,6 +88,7 @@ commands:
       - store_artifacts:
           name: Upload Mocha report
           path: mochawesome-report
+          destination: mochawesome-report
 
 jobs:
   automation-tests-run:
