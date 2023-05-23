@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2023-05-23T22:13:35.936Z",
-    "end": "2023-05-23T22:13:38.938Z",
-    "duration": 3002,
+    "start": "2023-05-23T22:42:21.103Z",
+    "end": "2023-05-23T22:42:23.314Z",
+    "duration": 2211,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,27 +18,27 @@
   },
   "results": [
     {
-      "uuid": "bb7a4bbb-8117-4547-b084-29f3990d340a",
+      "uuid": "47b8cc75-4d21-478b-ac35-978d17d7da21",
       "title": "",
-      "fullFile": "cypress\\e2e\\spec.cy.js",
-      "file": "cypress\\e2e\\spec.cy.js",
+      "fullFile": "cypress\\e2e\\spec2.cy.js",
+      "file": "cypress\\e2e\\spec2.cy.js",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "be9dda82-b4d0-4252-84a0-39d05952e4a1",
-          "title": "template spec",
+          "uuid": "50bd1685-3c7c-4126-9581-543a827bedb7",
+          "title": "template spec2",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
           "afterHooks": [],
           "tests": [
             {
-              "title": "new test",
-              "fullTitle": "template spec new test",
+              "title": "new test12",
+              "fullTitle": "template spec2 new test12",
               "timedOut": null,
-              "duration": 910,
+              "duration": 668,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.visit('https://example.cypress.io');",
               "err": {},
-              "uuid": "5abaac52-6a35-4d87-b949-b564119f2f18",
-              "parentUUID": "be9dda82-b4d0-4252-84a0-39d05952e4a1",
+              "uuid": "91aa24d5-4581-4dec-ac2f-86c712b6ed5c",
+              "parentUUID": "50bd1685-3c7c-4126-9581-543a827bedb7",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "5abaac52-6a35-4d87-b949-b564119f2f18"
+            "91aa24d5-4581-4dec-ac2f-86c712b6ed5c"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 910,
+          "duration": 668,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -94,7 +94,7 @@
     },
     "marge": {
       "options": {
-        "reportDir": "cypress/results",
+        "reportDir": "mochawesome-report",
         "overwrite": false,
         "html": true,
         "json": true

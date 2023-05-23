@@ -86,7 +86,7 @@ commands:
     description: "Generate mocha report"
     steps:
       - run:
-          name: generate-mocha-report-folde
+          name: generate-mocha-report-folder
           command: npm run cypress:generate:mocha:report
 
   upload-generated-mocha-report:
@@ -95,7 +95,6 @@ commands:
       - store_artifacts:
           name: Upload Mocha report
           path: mochawesome-report
-          destination: mochawesome-report
 
 jobs:
   automation-tests-run:
