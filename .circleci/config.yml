@@ -61,6 +61,13 @@ commands:
           name: Clean-cypress-results-folder
           command: npm run cypress:clean:mochawesome-report:folder
 
+  cypress-clean-mochawesome-json-file:
+    description: "Clean mochawesome.json file"
+    steps:
+      - run:
+          name: Delete-mochawesome-file
+          command: npm run cypress:clean:mochawesome:json:folder
+
   run-automation-tests-with-mocha-report:
     description: "Run automation tests with mocha report"
     steps:
