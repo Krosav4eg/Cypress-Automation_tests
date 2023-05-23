@@ -106,6 +106,7 @@ jobs:
       - restore-and-save-cache
       - cypress-clean-cypress-results-folder
       - cypress-clean-mochawesome-report-folder
+      - cypress-clean-mochawesome-json-file
       - run-automation-tests-with-mocha-report
       - merge-mocha-report
       - upload-generated-mocha-report
