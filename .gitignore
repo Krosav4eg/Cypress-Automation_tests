@@ -1,4 +1,5 @@
 node_modules
+reporter-output
 **/cypress/videos
 **/cypress/screenshots
 **/cypress/report
