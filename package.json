@@ -25,7 +25,6 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cypress:clean:cypress-results:folder": "rimraf cypress/results",
     "cypress:clean:mochawesome-report:folder": "rimraf mochawesome-report",
     "cypress:clean:mochawesome:json:folder": "rimraf mochawesome.json",
     "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report,overwrite=false,html=true,json=true",
