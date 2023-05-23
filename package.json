@@ -24,6 +24,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
+    "cypress:run:all:ui:tests": "cypress run --spec \"cypress/e2e/**\"",
     "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=reporter-output,overwrite=true,html=true,json=true"
   },
   "author": "Sergey Potapov",
