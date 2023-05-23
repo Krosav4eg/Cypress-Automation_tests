@@ -16,6 +16,7 @@
     "cypress-multi-reporters": "^1.6.3",
     "cypress-xpath": "^1.6.0",
     "mocha": "^8.3.2",
+    "mocha-multi": "^1.1.7",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.3.0",
     "mochawesome-report-generator": "^5.2.0",
@@ -24,7 +25,11 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=reporter-output,overwrite=true,html=true,json=true"
+    "cypress:clean:cypress-results:folder": "rimraf cypress/results",
+    "cypress:clean:mochawesome-report:folder": "rimraf mochawesome-report",
+    "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true",
+    "cy:merge:mocha:report": "mochawesome-merge \"cypress/results/*.json\" > mochawesome.json",
+    "cypress:generate:mocha:report": "marge mochawesome.json"
   },
   "author": "Sergey Potapov",
   "license": "ISC"

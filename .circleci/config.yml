@@ -47,6 +47,20 @@ commands:
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
 
+  cypress-clean-cypress-results-folder:
+    description: "cypress-clean-cypress-results-folder"
+    steps:
+      - run:
+          name: cypress-clean-cypress-results-folder
+          command: npm run cypress:clean:cypress-results:folder
+
+  cypress-clean-mochawesome-report-folder:
+    description: "Clean mochawesome report folder"
+    steps:
+      - run:
+          name: Clean-cypress-results-folder
+          command: npm run cypress:clean:mochawesome-report:folder
+
   run-automation-tests-with-mocha-report:
     description: "Run automation tests with mocha report"
     steps:
@@ -54,12 +68,26 @@ commands:
           name: Run automation tests with mocha report
           command: npm run cy:generate:mocha:report
 
+  merge-mocha-report:
+    description: "Merge mocha report"
+    steps:
+      - run:
+          name: merge mocha report
+          command: npm run cy:merge:mocha:report
+
+  generate-mocha-report-folder:
+    description: "Generate mocha report"
+    steps:
+      - run:
+          name: generate-mocha-report-folde
+          command: npm run cypress:generate:mocha:report
+
   upload-generated-mocha-report:
     description: "generating mocha report"
     steps:
       - store_artifacts:
           name: Upload Mocha report
-          path: reporter-output
+          path: mochawesome-report
 
 jobs:
   automation-tests-run:
@@ -68,7 +96,10 @@ jobs:
     parallelism: 1
     steps:
       - restore-and-save-cache
+      - cypress-clean-cypress-results-folder
+      - cypress-clean-mochawesome-report-folder
       - run-automation-tests-with-mocha-report
+      - merge-mocha-report
       - upload-generated-mocha-report
       - send-notification-to-slack-channel
 
