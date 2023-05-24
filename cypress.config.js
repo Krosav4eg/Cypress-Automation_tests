@@ -1,19 +1,13 @@
 const {defineConfig} = require("cypress");
 
 module.exports = defineConfig({
+    projectId: 'eomav6',
     e2e: {
         viewportWidth: 1200,
         viewportHeight: 800,
+        chromeWebSecurity: false,
+        videoCompression: false,
+        videoUploadOnPasses: false,
         retries: 2,
-        mochaAwesomeReporterOptions: {
-            reportDir: "reporter-output",
-            overwrite: true,
-            html: true,
-            json: true,
-            timestamp: "mmddyyyy_HHMMss",
-            screenshotOnRunFailure: true,
-            screenshotsFolder: "reporter-output/assets"
-        },
-
     },
 });

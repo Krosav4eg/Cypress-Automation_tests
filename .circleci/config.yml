@@ -47,12 +47,12 @@ commands:
                 only_for_branches: master
                 webhook: $SLACK_WEBHOOK
 
-  run-automation-tests-with-mocha-report:
-    description: "Run automation tests with mocha report"
+  run-automation-tests:
+    description: "Run automation tests"
     steps:
       - run:
-          name: Run automation tests with mocha report
-          command: npm run cy:generate:mocha:report
+          name: Run automation tests
+          command: npm run cy:run:alltests:in:cloud
 
   upload-generated-mocha-report:
     description: "generating mocha report"
@@ -65,13 +65,11 @@ jobs:
   automation-tests-run:
     working_directory: ~/Cypress-Automation_tests
     executor: docker-cypress
-    parallelism: 1
+    parallelism: 2
     steps:
       - restore-and-save-cache
-      - run-automation-tests-with-mocha-report
-      - upload-generated-mocha-report
+      - run-automation-tests
       - send-notification-to-slack-channel
-
 
 workflows:
   commit-workflow:

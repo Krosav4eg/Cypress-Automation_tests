@@ -24,7 +24,8 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=reporter-output,overwrite=true,html=true,json=true"
+    "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=reporter-output,overwrite=true,html=true,json=true",
+    "cy:run:alltests:in:cloud": "cypress run --record --key 1223c4c3-67aa-45f5-acbd-dc397762f752"
   },
   "author": "Sergey Potapov",
   "license": "ISC"
