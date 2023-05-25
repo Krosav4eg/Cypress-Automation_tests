@@ -24,7 +24,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "cy:run:all:tests:in:cloud": "cypress run --record --key 1223c4c3-67aa-45f5-acbd-dc397762f752 --browser chrome --headless ",
+    "cy:run:all:tests:in:cloud": "cypress run --record --key 1223c4c3-67aa-45f5-acbd-dc397762f752 --browser chrome --headless",
 
     "cypress:clean:mochawesome-report:folder": "rimraf cypress/results mochawesome-report mochawesome.json",
     "cy:generate:mocha:report": "cypress run --reporter mochawesome --reporter-options reportDir=cypress/results,overwrite=false,html=true,json=true",
