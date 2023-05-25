@@ -52,7 +52,7 @@ commands:
     steps:
       - run:
           name: Run automation tests
-          command: npm run cy:run:alltests:in:cloud
+          command: npm run cy:run:all:tests:in:cloud
 
   upload-generated-mocha-report:
     description: "generating mocha report"
