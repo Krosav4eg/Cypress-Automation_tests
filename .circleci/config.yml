@@ -17,7 +17,7 @@ executors:
     environment:
       TERM: xterm
     docker:
-      - image: cimg/node:14-browsers
+      - image: cimg/node:13.12-browsers
 
 commands:
   #My custom command name 'install-browsers'
