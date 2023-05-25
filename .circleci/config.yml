@@ -76,6 +76,7 @@ jobs:
     executor: docker-cypress
     parallelism: 1
     steps:
+      - install-browsers
       - restore-and-save-cache
       - run-automation-tests
       - send-notification-to-slack-channel
