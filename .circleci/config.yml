@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
-  browser-tools: circleci/browser-tools@1.4.1
 
 parameters:
   ApiTrigger:
@@ -17,15 +16,9 @@ executors:
     environment:
       TERM: xterm
     docker:
-      - image: cimg/node:14.16.0-browsers
+      - image: cypress/base:14
 
 commands:
-  #My custom command name 'install-browsers'
-  install-browsers:
-    description: "Checkout to my code and install browsers"
-    steps:
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
 
   restore-and-save-cache:
     description: "Restore and save cache"
@@ -75,7 +68,6 @@ jobs:
     executor: docker-cypress
     parallelism: 1
     steps:
-      - install-browsers
       - restore-and-save-cache
       - run-automation-tests
       - send-notification-to-slack-channel
