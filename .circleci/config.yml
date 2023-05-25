@@ -24,10 +24,9 @@ commands:
   install-browsers:
     description: "Checkout to my code and install browsers"
     steps:
-      - checkout
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
-      -
+
   restore-and-save-cache:
     description: "Restore and save cache"
     steps:
