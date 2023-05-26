@@ -73,7 +73,7 @@ jobs:
   automation-tests-run:
     working_directory: ~/Cypress-Automation_tests
     executor: docker-cypress
-    parallelism: 2
+    parallelism: 3
     steps:
       - install-browsers
       - restore-and-save-cache
