@@ -8,6 +8,6 @@ module.exports = defineConfig({
         chromeWebSecurity: false,
         videoCompression: false,
         videoUploadOnPasses: false,
-        retries: 2,
+        retries: 1,
     },
 });
