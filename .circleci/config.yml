@@ -102,7 +102,6 @@ workflows:
     jobs:
       - automation-tests-run
 
-
   on-demand:
     when: << pipeline.parameters.ApiTrigger >>
     jobs:
