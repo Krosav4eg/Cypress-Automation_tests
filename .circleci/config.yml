@@ -78,7 +78,6 @@ jobs:
       - install-browsers
       - restore-and-save-cache
       - run-automation-tests
-      - send-notification-to-slack-channel
 
 workflows:
   commit-workflow:
