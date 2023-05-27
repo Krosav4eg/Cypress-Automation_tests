@@ -1,5 +1,5 @@
 {
-  "name": "api_tests",
+  "name": "ui_tests",
   "version": "1.0.0",
   "description": "automation tests",
   "main": "index.js",
