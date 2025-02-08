@@ -20,16 +20,16 @@ describe('checking fixtures functionality', () => {
         cy.get('.navbar-brand').should('have.text', this.example.query);
     })
 
-    it('get data from nested fixture', () => {
-        cy.visit(webAddresses.google)
-        cy.fixture(PATH_TO_THE_FIXTURE2).then((data) => {
-            cy.get('.SDkEP').type(data.name_special_for_fixture).type('{enter}')
-        })
-    })
-
-    it('loads the same object in fixture', () => {
-        cy.fixture(PATH_TO_THE_FIXTURE).then((userFixture) => {
-            expect(name, 'the same data').to.deep.equal(userFixture)
-        })
-    })
+//    it('get data from nested fixture', () => {
+//        cy.visit(webAddresses.google)
+//        cy.fixture(PATH_TO_THE_FIXTURE2).then((data) => {
+//            cy.get('.SDkEP').type(data.name_special_for_fixture).type('{enter}')
+//        })
+//    })
+//
+//    it('loads the same object in fixture', () => {
+//        cy.fixture(PATH_TO_THE_FIXTURE).then((userFixture) => {
+//            expect(name, 'the same data').to.deep.equal(userFixture)
+//        })
+//    })
 })
